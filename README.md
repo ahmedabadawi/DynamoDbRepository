@@ -22,6 +22,8 @@ and provides the basis on which application specific repositories can be impleme
 - Implementation for querying
 - Update sample to use range key
 - Add asynchronous implementations for the repository operations
+
+
 -----------------
 ### History
 | Version | Description                                      |
