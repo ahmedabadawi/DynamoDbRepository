@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ChainReaction.DynamoDbRepository
 {
@@ -63,47 +64,90 @@ namespace ChainReaction.DynamoDbRepository
         #endregion
 
         #region Public Methods
-
-        public DynamoDbEntityConfiguration<TEntity> ToTable(string tableName)
+        /// <summary>
+        /// Defines the table name that the current entity configuration maps to 
+        /// </summary>
+        public IEntityConfiguration<TEntity> ToTable(string tableName)
         {
             TableName = tableName;
 
             return this;
         }
 
+        /// <summary>
+        /// Defines a hash key field for the current entity with the specified property name
+        /// </summary>
         public IFieldConfiguration HasHashKey(string propertyName)
         {
             return HasField(propertyName, true, false);
         }
 
+        /// <summary>
+        /// Defines a range key field for the current entity with the specified property name
+        /// </summary>
         public IFieldConfiguration HasRangeKey(string propertyName)
         {
             return HasField(propertyName, false, true);
         }
 
+        /// <summary>
+        /// Defines a regular field for the current entity with the specified property name
+        /// </summary>
         public IFieldConfiguration HasField(string propertyName)
         {
             return HasField(propertyName, false, false);
         }
 
+        /// <summary>
+        /// Defines a generic field for the current entity with the specified property name
+        /// and if the field is a hash key or range key
+        /// </summary>
+        /// <exception cref="System.ArgumentException">Thrown when the field is marked as hash key and range key at the same time</exception>
         public IFieldConfiguration HasField(string propertyName, bool isHashKey, bool isRangeKey)
         {
             var fieldMapping = new DynamoDbFieldConfiguration(propertyName, isHashKey, isRangeKey);
 
-            Fields.Add(fieldMapping);
-            if (fieldMapping.IsHashKey)
-            {
-                HashKey = fieldMapping;
-            }
-            if (fieldMapping.IsRangeKey)
-            {
-                RangeKey = fieldMapping;
-            }
+            HasField(fieldMapping);
 
             return fieldMapping;
         }
 
+        /// <summary>
+        /// Defines a generic field for the current entity with the specified field instance
+        /// </summary>
+        public IFieldConfiguration HasField(IFieldConfiguration field)
+        {
+            if (field.IsHashKey && field.IsRangeKey) throw new ArgumentException("The field cannot be hash key and range key on the table");
 
+            Fields.Add(field);
+
+            if (field.IsHashKey)
+            {
+                HashKey = field;
+            }
+            if (field.IsRangeKey)
+            {
+                RangeKey = field;
+            }
+
+            return field;
+        }
+
+        /// <summary>
+        /// Defines a set of fields
+        /// </summary>
+        public IEntityConfiguration<TEntity> HasFields(List<IFieldConfiguration> newFields)
+        {
+            if(newFields == null) throw new ArgumentNullException("newFields");
+
+            var fieldsValid = true;
+            newFields.ForEach(field => fieldsValid &= field.IsValid);
+            if(!fieldsValid) throw new ArgumentException("One or more fields are not valid","newFields");
+
+            Fields.AddRange(newFields);
+
+            return this;
+        }
         #endregion
     }
 }

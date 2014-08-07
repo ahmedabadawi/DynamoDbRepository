@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainReaction.DynamoDbRepository", "ChainReaction.DynamoDbRepository\ChainReaction.DynamoDbRepository.csproj", "{03A57AD3-D19A-46D8-87A9-9FC4DD39B710}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainReaction.DynamoDbRepository.SampleDynamoDbApplication", "ChainReaction.DynamoDbRepository.SampleDynamoDbApplication\ChainReaction.DynamoDbRepository.SampleDynamoDbApplication.csproj", "{3A55804E-359F-4271-800D-6388BBBBF07B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{03A57AD3-D19A-46D8-87A9-9FC4DD39B710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03A57AD3-D19A-46D8-87A9-9FC4DD39B710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03A57AD3-D19A-46D8-87A9-9FC4DD39B710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A55804E-359F-4271-800D-6388BBBBF07B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A55804E-359F-4271-800D-6388BBBBF07B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A55804E-359F-4271-800D-6388BBBBF07B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A55804E-359F-4271-800D-6388BBBBF07B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

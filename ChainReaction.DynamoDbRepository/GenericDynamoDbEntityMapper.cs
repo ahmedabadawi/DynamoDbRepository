@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Amazon.DynamoDBv2.DocumentModel;
+using Amazon.IdentityManagement.Model;
 
 namespace ChainReaction.DynamoDbRepository
 {
@@ -49,6 +50,7 @@ namespace ChainReaction.DynamoDbRepository
                 foreach (var field in EntityConfiguration.Fields)
                 {
                     dynamic value = entity.GetType().GetProperty(field.PropertyName).GetValue(entity, null);
+                    
                     entityDocument[field.FieldName] = value;
                 }
             }

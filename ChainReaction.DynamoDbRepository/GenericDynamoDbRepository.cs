@@ -43,10 +43,19 @@ namespace ChainReaction.DynamoDbRepository
         /// <summary>
         /// Updates the specified entity to the DynamoDb
         /// </summary>
-        public void Save(TEntity entity)
+        public TEntity Save(TEntity entity)
         {
-            //TODO: Add logic to handle the update
-            throw new NotImplementedException();
+            var entityDocument = EntityMapper.Serialize(entity);
+
+            var operationConfig = new UpdateItemOperationConfig()
+            {
+                ReturnValues = ReturnValues.AllNewAttributes
+            };
+            var updatedDocument = EntityTable.UpdateItem(entityDocument, operationConfig);
+
+            var updatedEntry = EntityMapper.Deserialize(updatedDocument);
+
+            return updatedEntry;
         }
 
         /// <summary>
@@ -69,8 +78,16 @@ namespace ChainReaction.DynamoDbRepository
         /// </summary>
         public TEntity Delete(TKey id)
         {
-            //TODO: Add logic to handle the delete operation 
-            throw new NotImplementedException();
+            dynamic idToDelete = id;
+            var operationConfig = new DeleteItemOperationConfig()
+            {
+                ReturnValues = ReturnValues.AllOldAttributes
+            };
+            var deletedDocument = EntityTable.DeleteItem(idToDelete, operationConfig);
+
+            var deletedEntry = EntityMapper.Deserialize(deletedDocument);
+
+            return deletedEntry;
         }
         #endregion
 
@@ -86,6 +103,7 @@ namespace ChainReaction.DynamoDbRepository
         /// Provides the Amazon DynamoDb Table instance as per the entity mapper
         /// </summary>
         protected Table EntityTable { get; private set; }
+
         /// <summary>
         /// Provides the Amazon DynamoDb Client instance
         /// </summary>

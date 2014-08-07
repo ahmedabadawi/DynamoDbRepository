@@ -15,7 +15,7 @@
         /// <summary>
         /// Updates the specified entity to the data store
         /// </summary>
-        void Save(TEntity entity);
+        TEntity Save(TEntity entity);
 
         /// <summary>
         /// Retrieves the entity by the specified Id from the data store

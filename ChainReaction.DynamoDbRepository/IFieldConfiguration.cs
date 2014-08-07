@@ -36,5 +36,16 @@ namespace ChainReaction.DynamoDbRepository
         /// Validates the field information
         /// </summary>
         bool IsValid { get; }
+
+        /// <summary>
+        /// Defines the type of the current field with the specified type
+        /// </summary>
+        IFieldConfiguration OfType(Type type);
+
+        /// <summary>
+        /// Defines the mapping database field for the current property
+        /// </summary>
+        IFieldConfiguration MapTo(string fieldName);
+
     }
 }

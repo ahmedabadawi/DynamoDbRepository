@@ -106,7 +106,7 @@ namespace ChainReaction.DynamoDbRepository
         /// Note: the type is used in serializing and deserializing the entities 
         /// to and from DynamoDb
         /// </summary>
-        public DynamoDbFieldConfiguration OfType(Type type)
+        public IFieldConfiguration OfType(Type type)
         {
             Type = type;
 
@@ -118,7 +118,7 @@ namespace ChainReaction.DynamoDbRepository
         /// Note: If the mapping database field is the same as the property name, 
         /// no need to re-map the field
         /// </summary>
-        public DynamoDbFieldConfiguration MapTo(string fieldName)
+        public IFieldConfiguration MapTo(string fieldName)
         {
             FieldName = fieldName;
 
