@@ -5,6 +5,7 @@ ChainReaction.DynamoDbRepository is a library that provides the bases for implem
 - Abstract the data store operations
 - Provide concrete generic implementation for the entity mappers and repositories
 - Have the dependency injection in mind for resolving dependencies between components
+
 ------------------
 ### Description
 The library contains abstraction for the data access repository and entity mapping in IRepository and IEntityMapper interfaces respectively
