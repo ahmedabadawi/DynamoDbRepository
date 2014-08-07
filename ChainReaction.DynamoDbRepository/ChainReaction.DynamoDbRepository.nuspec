@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ChainReaction.DynamoDbRepository</id>
+    <version>0.1.0.0</version>
+    <title>Amazon DynamoDb Repository</title>
+    <authors>Ahmed Badawi (ahmedabadawi@gmail.com)</authors>
+    <owners>Ahmed Badawi (ahmedabadawi@gmail.com)</owners>
+    <licenseUrl>https://raw.githubusercontent.com/ahmedabadawi/DynamoDbRepository/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/ahmedabadawi/DynamoDbRepository</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Repository Pattern Implementation for Amazon DynamoDB</description>
+    <releaseNotes>Initial implementation of repository pattern for Amazon DynamoDb data store</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>Amazon DynamoDb NoSql Repository Pattern</tags>
+	<dependencies>
+      <dependency id="AWSSDK" version="2.2.2.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\ChainReaction.DynamoDbRepository.dll" target="lib" /> 
+</files>
+</package>
